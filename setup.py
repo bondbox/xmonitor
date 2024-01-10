@@ -23,4 +23,4 @@ setup(
     project_urls={"Source Code": __url_code__,
                   "Bug Tracker": __url_bugs__,
                   "Documentation": __url_docs__},
-    packages=find_packages(include=["xmanual*"], exclude=["tests"]))
+    packages=find_packages(include=["xmonitor*"], exclude=["tests"]))
