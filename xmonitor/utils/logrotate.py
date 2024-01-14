@@ -8,6 +8,7 @@ from typing import Any
 from typing import Dict
 from typing import List
 from typing import Optional
+from typing import Union
 from xml.etree.ElementTree import Element
 
 from xarg import singleton
@@ -93,7 +94,7 @@ lr_files = __lr_files()
 
 lr_status_v1 = namedtuple("logrotate_status_v1", ("path", "time"))
 lr_status_v2 = namedtuple("logrotate_status_v2", ("path", "time"))
-lr_state = lr_status_v1 | lr_status_v2
+lr_state = Union[lr_status_v1, lr_status_v2]
 
 
 class lr_status():
