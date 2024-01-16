@@ -13,8 +13,10 @@ from ..utils import __description__
 from ..utils import __name__
 from ..utils import __url_home__
 from ..utils import __version__
+from .glances import add_cmd_glances
 
 subs: List[add_command] = list()
+subs.append(add_cmd_glances)
 
 try:
     from .logrotate import add_cmd_logrotate
