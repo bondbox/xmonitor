@@ -121,7 +121,7 @@ class lr_status():
     def read(cls, path: str) -> Dict[str, Any]:
 
         def __read_v1(hdl: TextIOWrapper) -> Dict[str, Any]:
-            '''
+            '''read version 1 state file
             fprintf(f, "logrotate state -- version 1\n");
 
             for (i = 0; i < numStates; i++) {
@@ -143,7 +143,7 @@ class lr_status():
             return status
 
         def __read_v2(hdl: TextIOWrapper) -> Dict[str, Any]:
-            '''
+            '''read version 2 state file
             bytes =  fprintf(f, "logrotate state -- version 2\n");
             if (bytes < 0)
                 error = bytes;
