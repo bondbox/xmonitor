@@ -6,7 +6,6 @@ from xarg import add_command
 from xarg import argp
 from xarg import commands
 from xarg import run_command
-from xmanage import systemd_service
 
 try:
     from xmanage import systemd_path
@@ -34,12 +33,7 @@ def add_cmd_sd_create(_arg: argp):
 def run_cmd_sd_create(cmds: commands) -> int:
     force_update = cmds.args.glances_sd_force_update
     for name in cmds.args.glances_sd_names:
-        service_example = glances_service.examples.get_value(name)
-        path = service_example.path
-        unit = service_example.unit
-        cmds.logger.info(f"write service unit: {unit} to {path}")
-        service = systemd_service.from_string(service_example.value)
-        service.create_unit(path=path, unit=unit, allow_update=force_update)
+        glances_service.from_example_name(name).create(force_update)
     return 0
 
 
