@@ -9,6 +9,7 @@ from .attribute import __url_code__
 from .attribute import __url_docs__
 from .attribute import __url_home__
 from .attribute import __version__
+from .glances import glances_systemd_service
 
 try:
     from .logrotate import lr_files as logrotate_files
