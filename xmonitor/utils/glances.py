@@ -18,7 +18,7 @@ service_example = namedtuple("glances_service_example",
                              ("path", "unit", "value"))
 
 
-class systemd_service(systemd_service):
+class glances_sd_service(systemd_service):
 
     class examples(Enum):
         '''glances systemd service unit examples
@@ -94,12 +94,12 @@ WantedBy=multi-user.target
 
     @classmethod
     def from_example_name(cls, name: str, path: Optional[str] = None,
-                          unit: Optional[str] = None) -> "systemd_service":
+                          unit: Optional[str] = None) -> "glances_sd_service":
         example = cls.examples.get_value(name)
         _path: str = example.path if path is None else path
         _unit: str = example.unit if unit is None else unit
         _conf: ConfigParser = cls.read_string(example.value)
-        return systemd_service(_path, _unit, _conf)
+        return glances_sd_service(_path, _unit, _conf)
 
     def create(self, force_update: bool = False) -> None:
         super().create_unit(path=self.path, unit=self.unit,
