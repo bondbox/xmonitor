@@ -1,5 +1,6 @@
 # coding:utf-8
 
+import shutil
 from typing import Tuple
 
 from xarg import add_command
@@ -31,9 +32,14 @@ def add_cmd_sd_create(_arg: argp):
 
 @run_command(add_cmd_sd_create)
 def run_cmd_sd_create(cmds: commands) -> int:
+    where = shutil.which("glances")
+    assert isinstance(where, str), "glances not found"
     force_update = cmds.args.glances_sd_force_update
     for name in cmds.args.glances_sd_names:
-        glances_service.from_example_name(name).create(force_update)
+        service = glances_service.from_example_name(name)
+        options = [where] + glances_service.examples.get_value(name).options
+        service.service_section.ExecStart = chr(32).join(options)
+        service.create(force_update)
     return 0
 
 

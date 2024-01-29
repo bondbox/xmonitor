@@ -15,7 +15,7 @@ except Exception:
     conf_dir: str = "/etc/systemd/system/"
 
 service_example = namedtuple("glances_service_example",
-                             ("path", "unit", "value"))
+                             ("path", "unit", "value", "options"))
 
 
 class glances_sd_service(systemd_service):
@@ -37,7 +37,7 @@ RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
-""")
+""", ["-s"])
         webserver = service_example(conf_dir, "glances-webserver", """
 [Unit]
 Description=Glances RESTful server and Web interface
@@ -50,7 +50,7 @@ RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
-""")
+""", ["-w"])
         influxdb = service_example(conf_dir, "glances-influxdb", """
 [Unit]
 Description=Glances export stats to a InfluxDB server
@@ -65,7 +65,7 @@ TimeoutSec=30s
 
 [Install]
 WantedBy=multi-user.target
-""")
+""", ["--quiet", "--export=influxdb"])
 
         @classmethod
         def names(cls) -> List[str]:
