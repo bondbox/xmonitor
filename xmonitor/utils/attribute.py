@@ -2,13 +2,13 @@
 
 from urllib.parse import urljoin
 
-__name__ = "xmonitor"
+__project__ = "xmonitor"
 __version__ = "0.2"
 __description__ = "Monitor tool and log file management."
-__url_home__ = "https://github.com/bondbox/xmonitor/"
-__url_code__ = __url_home__
-__url_docs__ = __url_home__
-__url_bugs__ = urljoin(__url_home__, "issues")
+__urlhome__ = "https://github.com/bondbox/xmonitor/"
+__urlcode__ = __urlhome__
+__urldocs__ = __urlhome__
+__urlbugs__ = urljoin(__urlhome__, "issues")
 
 # author
 __author__ = "Mingzhe Zou"
